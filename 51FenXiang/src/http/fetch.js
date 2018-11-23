@@ -6,11 +6,11 @@ const server = axios.create({
   }
 })
 if (process.env.NODE_ENV === 'development') {
-  server.defaults.baseURL = 'http://47.106.110.95/'
+  server.defaults.baseURL = 'http://192.168.31.112:8080/'
   // 47.106.110.95/
   // http://192.168.31.112:8080/
 } else if (process.env.NODE_ENV === 'production') {
-  server.defaults.baseURL = '***'
+  server.defaults.baseURL = 'http://47.106.110.95/'
 }
 // Add a request interceptor 添加请求拦截机
 server.interceptors.request.use(config => {

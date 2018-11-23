@@ -84,9 +84,9 @@ export default {
     bgLine
   },
   computed: {
-    ...mapGetters([
-      'appid'
-    ])
+//    ...mapGetters([
+//      'appid'
+//    ])
   },
   data () {
     return {
@@ -98,7 +98,8 @@ export default {
       infoVersion: [],
       activeTab: 0,
       isReadyX: false,
-      isUnfold: false
+      isUnfold: false,
+      query:null,
     }
   },
   methods: {
@@ -106,7 +107,7 @@ export default {
       this.isUnfold = !this.isUnfold
     },
     getAppDetails () {
-      this.$req.get('appAPI/appxiangxi', {appId: this.appid}).then(res => {
+      this.$req.get('appAPI/appxiangxi', {appId: this.query.id}).then(res => {
 //        console.log(res)
         this.details = res.data
         console.log(this.details);
@@ -144,6 +145,7 @@ export default {
     }
   },
   created () {
+    this.query = this.$route.query
     console.log('父组件created')
     this.getAppDetails()
   },

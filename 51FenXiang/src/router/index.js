@@ -1,15 +1,17 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+// import appDetails from '@/views/appDetails/appDetails'
 
 Vue.use(Router)
 
 export default new Router({
+  mode:'history',
+  base:'/appAPI/',
   routes: [
     {
       path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
+      name: 'appDetails',
+      component: resolve => require(['@/views/appDetails/appDetails'], resolve)
     },
     {
       path: '/articleDetails',
@@ -19,7 +21,7 @@ export default new Router({
     {
       path: '/question',
       name: 'question',
-      component: resolve => require(['@/components/common/question/index'], resolve)
+      component: resolve => require(['@/components/common/question'], resolve)
     },
     {
       path: '/playVideo',

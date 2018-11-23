@@ -40,14 +40,14 @@
     computed: {},
     data() {
       return {
+        query:null,
         copyArr:[],
         copy:{},
-        type:0, // 页面来源
         isShowShare:false
       }
     },
     methods: {
-      // 判断类型，报道 活动
+      // 判断类型，0报道 1活动
       judge(type){
         switch(type){
           case 0:
@@ -67,31 +67,33 @@
         }
       },
       initData () {
-        console.log(1);
+//        console.log(1);
         let api;
-        if(this.type === 0){
+        if(this.query.isActivity === 0){
           api = 'appAPI/getBaoDaoDetail'
-        }else if(this.type === 1){
+        }else if(this.query.isActivity === 1){
           api = 'appAPI/getPlayDetail'
         }
-        this.$req.get(api,{id:'057ba9904c9c4b969180776ed1e9ab02'}).then(res => {
+        this.$req.get(api,{id:this.query.id}).then(res => {
 //          console.log('报道',res.data);
           let original;
-          if ( this.type == 0 ) {
+          if ( this.query.isActivity == 0 ) {
             original = res.data.baodaodetail // 必须是数组
-          } else if ( this.type == 1 ) {
+          } else if (this.query.isActivity == 1 ) {
             original = res.data.playdetail
           }
           this.copyArr = [...original]
           this.copy =this.copyArr[0]
-          this.judge(this.type)
+          this.judge(this.query.isActivity)
         }).catch(err => {
           console.log(err)
         })
       },
     },
     created() {
-//      this.initData()
+      this.query = this.$route.query
+
+      this.initData()
     }
 
   }

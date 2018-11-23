@@ -1,34 +1,39 @@
 <template>
+<div class="page-box">
+  <!--<Head @backFn="backFn"><span>常见问题</span></Head>-->
   <scroll :data="titleList">
-   <div class="container">
-    <!-- <section class="notice">
-       <P>用户必读666</P>
-       <span>{{notice}}</span>
-     </section>-->
-       <div class="title-box" v-for="(item,index) in titleList">
-         <div class="title">
-           <i class="num">{{item.id}}</i>
-           <span>{{item.title}}</span>
-            <p class="arrowsBox" @click="showFn(index)">
-              <img  class="arrows" src="../../../assets/images/common/down_arrows.png">
-            </p>
-       </div>
-         <!--具体内容-->
-         <transition name="fade">
-           <div class="des" v-if="index===activeTab " v-html="item.des">
-           </div>
-         </transition>
-   </div>
-   </div>>
+    <div class="container">
+      <!-- <section class="notice">
+         <P>用户必读666</P>
+         <span>{{notice}}</span>
+       </section>-->
+      <div class="title-box" v-for="(item,index) in titleList">
+        <div class="title">
+          <i class="num">{{item.id}}</i>
+          <span>{{item.title}}</span>
+          <p class="arrowsBox" @click="showFn(index)">
+            <img  class="arrows" src="../../../assets/images/common/down_arrows.png">
+          </p>
+        </div>
+        <!--具体内容-->
+        <transition name="fade">
+          <div class="des" v-if="index===activeTab " v-html="item.des">
+          </div>
+        </transition>
+      </div>
+    </div>
   </scroll>
+</div>
 </template>
 
 <script>
   import scroll from '@/base/scroll'
+  import Head from '@/components/common/header'
   export default {
-    name: "",
+    name: "question",
     components: {
-      scroll
+      scroll,
+      Head
     },
     computed: {},
     data() {
@@ -40,6 +45,9 @@
       }
     },
     methods: {
+      backFn(){
+        console.log(1);
+      },
       setQSText(index) {
         let QSText;
         switch(index){
@@ -74,8 +82,11 @@
         this.$set(this.titleList[index], 'des', des);
       },
       showFn(index){
-//        console.log(index);
-        this.activeTab= index
+        if(this.activeTab != index){
+          this.activeTab= index
+        }else {
+          this.activeTab=null
+        }
         this.isUnfold = ! this.isUnfold
         let des = this.setQSText(index)
         this.setDesProp(index, des)

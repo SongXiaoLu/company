@@ -17,6 +17,11 @@
   height: 100%;
   overflow: hidden;
 }
+.page-box{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
 .page{
   padding: 0.3rem;
   box-sizing: border-box;
