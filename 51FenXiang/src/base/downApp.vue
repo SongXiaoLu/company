@@ -1,36 +1,43 @@
 <template>
-  <div class="footer">
+  <div class="footer" v-if="isShowDownApp">
       <img class="logo" src="../assets/images/51.png" alt="">
     <p class="des">
       <i>51纷享</i><br>
       <span>分享创造价值</span>
     </p>
-    <div class="right" @click="down">下载APP</div>
+    <div class="right" @click="downFn">下载APP</div>
   </div>
 </template>
 
 <script>
-    // import someComponent from './someComponent'
-    export default {
-        name: "down",
-        component: {
-// someComponent
-        },
-        computed: {},
-        data() {
-            return {
-                msg: "Hello Vue.js"
-            }
-        },
-        methods: {
-          down() {
-            this.$emit('down')
-          }
-        },
-        created() {
-        }
+  import {mapGetters,mapMutations} from 'vuex'
 
+  export default {
+    name: "down",
+    components: {
+// someComponent
+    },
+    computed: {
+      ...mapGetters([
+        'appDownUrl',
+        'isShowDownApp'
+      ])
+    },
+    data() {
+      return {
+        msg: "Hello Vue.js"
+      }
+    },
+    methods: {
+      downFn() {
+        this.$router.push(this.appDownUrl)
+//        console.log(this.appDownUrl);
+      }
+    },
+    created() {
     }
+
+  }
 </script>
 
 <style type="text/scss" lang="scss" scoped>
@@ -42,7 +49,7 @@
     height: 1.36rem;
     box-sizing: border-box;
     /*background-color: red;*/
-    border-top: 2px solid #D8D8D8;
+    border-top: 1px solid #D8D8D8;
     display: flex;
     flex-direction: row;
     padding:0.2rem;
@@ -51,6 +58,7 @@
     font-family:PingFangSC-Medium;
     font-weight:500;
     color:rgba(60,51,43,1);
+    background-color: #fff;
     line-height:0.44rem;
   }
 .logo{

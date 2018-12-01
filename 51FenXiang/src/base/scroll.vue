@@ -7,6 +7,9 @@
   import BScroll from 'better-scroll'
   export default {
     props: {
+      scrollHeight:{
+        type:Number
+      },
       probeType: {
         type: Number,
         default: 1
@@ -45,14 +48,18 @@
         default: 20
       }
     },
+    data() {
+    return{
+    }
+    },
     created(){
-      console.log('scroll,created');
+//      console.log('scroll,created');
     },
     mounted() {
-      console.log('scroll,mounted');
+//      console.log('scroll,mounted');
       setTimeout(() => {
         this._initScroll()
-      }, 20)
+      }, 20);
     },
     methods: {
       // 初始化
@@ -65,9 +72,9 @@
           click: this.click,
           scrollX: this.scrollX
         })
-        console.log(this.scroll)
-        console.log(this.scroll.wrapperHeight);
-        console.log(this.scroll.scroller.scrollHeight);
+//        console.log(this.scroll);
+//        console.log('this.scroll.wrapperHeight',  this.scroll.wrapperHeight);
+//        console.log('this.scroll.scroller.scrollHeight', this.scroll.scroller.scrollHeight);
 
         if (this.listenScroll) {
           let _this = this
@@ -123,7 +130,13 @@
       // 监听数据动态变化，触发refresh
       data() {
         setTimeout(() => {
-          this.refresh()
+          this.scroll.refresh()
+        }, this.refreshDelay)
+      },
+      scrollHeight(val1,val2) {
+//       console.log(val1, val2);
+       setTimeout(() => {
+          this.scroll.refresh()
         }, this.refreshDelay)
       }
     }

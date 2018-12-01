@@ -35,11 +35,11 @@
     },
     methods: {
       goDetail (id){
-        this.$router.push({path: '/reportDetails', query: {id: id}
+        this.$router.push({path: 'reportDetails', query: {id: id}
         })
       },
       initData () {
-        this.$req.get('appAPI/getBaoDaoSimple').then(res => {
+        this.$req.get('getBaoDaoSimple').then(res => {
           console.log(res.data)
          this.listData = res.data.baodaodetail
         }).catch(err => {

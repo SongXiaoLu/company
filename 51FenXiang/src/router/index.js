@@ -6,7 +6,6 @@ Vue.use(Router)
 
 export default new Router({
   mode:'history',
-  base:'/appAPI/',
   routes: [
     {
       path: '/',
@@ -39,24 +38,9 @@ export default new Router({
     //   component: resolve => require(['@/example'], resolve)
     // },
     {
-      path: '/exe',
-      name: 'exe',
-      component: resolve => require(['@/views/exe'], resolve)
-    },
-    {
       path: '/appDetails',
       name: 'appDetails',
       component: resolve => require(['@/views/appDetails/appDetails'], resolve)
-    },
-    // {
-    //   path: '/report',
-    //   name: 'report',
-    //   component: resolve => require(['@/views/report/report'], resolve)
-    // },
-    // {
-    //   path: '/reportDetails',
-    //   name: '/reportDetails',
-    //   component: resolve => require(['@/views/report/reportDetails'], resolve)
-    // },
+    }
   ]
 })

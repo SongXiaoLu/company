@@ -6,7 +6,7 @@ const get = function (url, params = "") {
 }
 
 const post = function (url, data) {
-  return service.post(url, qs.stringify(data))
+  return service.post(url, data)
 }
 
 const put = function (url, data) {

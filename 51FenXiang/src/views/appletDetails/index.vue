@@ -1,8 +1,8 @@
 <template>
 <div class="main-box">
   两张占位图
-  <img src="" alt="">
-  <img src="" alt="">
+  <img class="pic" src="" alt="">
+  <img class="pic" src="" alt="">
 </div>
 </template>
 
@@ -27,5 +27,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+.pic{
+  width: 100%;
+}
 </style>
