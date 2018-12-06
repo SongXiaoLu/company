@@ -35,10 +35,18 @@
                 <p class="gameDes-text" :class="{'active':isUnfold}">{{apps.youxijieshao}}
                   <!--<span class="look" @click="UnfoldFn">{{isUnfold?'收起':'查看更多'}}</span>-->
                 </p>
-                <!--转发金币-->
+                <!--下载金币-->
                 <bgLine style="margin-top:0.3rem"></bgLine>
                 <div class="transmit">
-                  <span>分享该应用可获得</span>
+                  <span>下载该应用可获得</span>
+                  <span>
+        <img class="gold" src="../../assets/images/金币.png" alt="">
+        <i class="goldNum">+{{apps.money*2}} 金币</i>
+      </span>
+                </div>
+                <!--转发金币-->
+                <div class="transmit">
+                  <span>转发该应用可获得</span>
                   <span>
         <img class="gold" src="../../assets/images/金币.png" alt="">
         <i class="goldNum">+{{apps.money}} 金币</i>

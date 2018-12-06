@@ -30,7 +30,7 @@
     <img :src="copy.detaildiagram" alt="" class="photo">
     <article class="text" v-html="copy.introduce">
     </article>
-    <div class="transmit">
+    <div class="transmit" v-if="query.isShow==0">
       <span>转发该文章可获得</span>
       <span>
         <img class="gold" src="../assets/images/金币.png" alt="">
@@ -44,7 +44,7 @@
 <script>
   import {mapGetters,mapMutations} from 'vuex'
   import scroll from '@/base/scroll'
-  //  这个页面要接收 isActivity：0报道 1 活动  和 id详情
+  //  这个页面要接收 isActivity：0报道 1 活动  和 id详情,isShow,alipayId
   export default {
     name: "",
     computed:{
@@ -66,7 +66,9 @@
     },
     methods: {
       ...mapMutations([
-          'setIsShowDownApp'
+          'setIsShowDownApp',
+           'setAlipayId',
+           'setFromPage'
         ]
       ),
       //倒计时开始
@@ -87,29 +89,6 @@
           }
         }, 1000);
       },
-      // 判断类型，0报道 1活动
-     /* judge(type){
-        console.log('type',type);
-        switch(type){
-          case 0:
-            this.$set(this.detailsData,'img', this.copy.coverphoto);
-            this.detailsData.text = this.copy.introduce
-            this.detailsData.reading = this.copy.numberofreading
-            this.detailsData.date = this.copy.releasetime
-            this.detailsData.title = this.copy.title
-            this.detailsData.uuu ='111'
-            break;
-          case 1:
-            this.$set(this.detailsData,'img', this.copy.detaildiagram);
-            this.detailsData.text = this.copy.introduce
-            this.detailsData.reading = this.copy.readnum
-            this.detailsData.date = this.copy.createtime
-            this.detailsData.title = this.copy.title
-            break;
-        }
-        console.log( this.detailsData.uuu);
-//        console.log('copy===========',this.copy);
-      },*/
       initData () {
         let url;
         if(this.query.isActivity == 0){
@@ -146,6 +125,8 @@
       this.query = this.$route.query
       console.log('参数',this.query);
       this.setIsShowDownApp(this.query.isShow)
+      this.setAlipayId(this.query.alipayId)
+      this.setFromPage('articleDetails') // 文章页下载自己app,app详情下载详情里的app
       this.initData()
     },
     mounted() {

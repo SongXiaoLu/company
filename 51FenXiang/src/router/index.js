@@ -7,28 +7,33 @@ Vue.use(Router)
 export default new Router({
   mode:'history',
   routes: [
+    // {
+    //   path: '/',
+    //   name: 'appDetails',
+    //   component: resolve => require(['@/views/appDetails/appDetails'], resolve)
+    // },
     {
-      path: '/',
-      name: 'appDetail',
-      component: resolve => require(['@/views/appDetails/appDetails'], resolve)
-    },
-    {
-      path: '/articleDetails',
+      path: '/articleDetails.share',
       name: 'articleDetails',
       component: resolve => require(['@/views/articleDetails'], resolve)
     },
     {
-      path: '/question',
+      path: '/question.share',
       name: 'question',
       component: resolve => require(['@/components/common/question'], resolve)
     },
     {
-      path: '/appletDetails',
+      path: '/privacyPolicy.share',
+      name: 'privacyPolicy',
+      component: resolve => require(['@/components/common/privacyPolicy'], resolve)
+    },
+    {
+      path: '/appletDetails.share',
       name: 'appletDetails',
       component: resolve => require(['@/views/appletDetails'], resolve)
     },
     {
-      path: '/newGuidance',
+      path: '/newGuidance.share',
       name: 'newGuidance',
       component: resolve => require(['@/views/newGuidance'], resolve)
     },
@@ -38,9 +43,13 @@ export default new Router({
     //   component: resolve => require(['@/example'], resolve)
     // },
     {
-      path: '/appDetails',
+      path: '/appDetails.share',
       name: 'appDetails',
-      component: resolve => require(['@/views/appDetails/appDetails'], resolve)
+      component: resolve => require(['@/views/newAppDetails'], resolve)
+    },
+    {
+      path: '*',
+      component: (resolve) => require(['@/views/error404'], resolve)
     }
   ]
 })
