@@ -5,10 +5,10 @@
      {{copy.title}}
     </header>
     <div class="time">
-      <span><i class="iconfont">&#xe638;</i>发布于{{copy.releasetime}}</span>
-      <span><i class="iconfont eye">&#xe661;</i>{{copy.numberofreading}}</span>
+      <span><img class="icon" src="../assets/images/common/calendar.png" alt="">发布于{{copy.releasetime}}</span>
+      <span class="eye"><img class="icon" src="../assets/images/common/eye.png" alt=""> {{copy.numberofreading}}</span>
     </div>
-    <img :src="copy.coverphoto" alt="" class="photo">
+    <!--<img :src="copy.coverphoto" alt="" class="photo">-->
     <article class="text" v-html="copy.introduce">
     </article>
     <div class="transmit">
@@ -161,9 +161,16 @@
     color:rgba(160,152,142,1);
     padding-top: 0.32rem;
     box-sizing: border-box;
-.eye{
-  margin-left: 0.2rem;
-}
+    .eye{
+      margin-left: 0.3rem;
+    }
+    .icon{
+      width: 1.2em;
+      height: 1.2em;
+      position: relative;
+      top: 0.06rem;
+      margin-right: 0.2rem;
+    }
   }
   .photo{
     width: 100%;

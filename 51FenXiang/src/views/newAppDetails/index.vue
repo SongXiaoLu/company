@@ -11,16 +11,21 @@
           </p>
         </div>
         <div class="tab-box">
-          <mt-swipe :auto="2000" class="slideshowBox" ref="slideshowBox">
-            <mt-swipe-item v-for="item in apppic" :key="item.id">
-              <img class="itemImg" :src="item.detailpicurl"/>
+          <mt-swipe :auto="2000" class="slideshowBox" v-if="apppic">
+            <mt-swipe-item class="swipeItem" v-for="item in apppic" :key="item.id">
+              <img class="itemImg" :src="item.detailpicurl" />
               <!--<span class="desc">{{item.title}}</span>-->
+            </mt-swipe-item>
+          </mt-swipe>
+          <!--图片不存在，默认的轮播图-->
+          <mt-swipe :auto="2000" class="defaultPicBox" v-if="deaultpic">
+            <mt-swipe-item class="swipeItem" v-for="item in deaultpic" :key="item.id">
+              <img class="itemImg" :src="item.detailpicurl" />
             </mt-swipe-item>
           </mt-swipe>
         </div>
         <!--下载金币-->
-     <div style="margin-top:0.3rem" v-if="query.isShow == 0 ">
-       <bgLine></bgLine>
+     <div class="moneyBox" v-if="query.isShow == 0 ">
        <div class="transmit">
          <span>分享后单次有效下载即可获得</span>
          <span>
@@ -61,14 +66,19 @@
 //    ...mapGetters([
 //      'appid'
 //    ])
+      // 默认的轮播图
+      deaultpic() {
+        if ( this.apppic.length == 0 || this.apppic == '' ) {
+        return [{id:0,detailpicurl: require('../../assets/images/imgccc.png')},{id:1,detailpicurl: require('../../assets/images/imgccc.png')}]
+        }
+      }
     },
     data () {
       return {
         details: {},
         arr: [],
         apps: {},
-        apppic: [], // 轮播图
-        slideshowBoxHeight:0,
+        apppic: '', // 轮播图
         query:null,
       }
     },
@@ -120,10 +130,6 @@
       this.getAppDetails()
     },
     mounted () {
-//      this.$nextTick(()=>{
-//        console.log(this.$refs.slideshowBox);
-//      })
-
 //    console.log('父组件mounted')
     }
   }
@@ -131,28 +137,38 @@
 
 <style type="text/scss" lang="scss" scoped>
   .slideshowBox{
-    width: 100%;
-    height: 600px;
-    overflow: hidden;
-    margin: 0 auto;
+    height:600px;
     text-align: center;
-    .itemImg{
+    .swipeItem{
       height: 100%;
-      margin: 0 auto;
-      text-align: center;
+      .itemImg{
+        height: 100%;
+      }
     }
   }
+  .defaultPicBox{
+    height: 600px;
+    text-align: center;
+    .swipeItem{
+      height: 100%;
+      .itemImg{
+        height: 100%;
+      }
+    }
+  }
+  .moneyBox{
+    margin-top: 0.5rem;
+  }
   .transmit{
-    height: 0.7rem;
     display: flex;
+    padding: 0 0.2rem;
+    line-height: 0.5rem;
     align-items: center;
     justify-content: space-between;
-    border-bottom:2px solid #F5F5F5;
-    border-top:2px solid #F5F5F5;
-    margin-top: 0.6rem;
     font-size:0.28rem;
     font-family:PingFangSC-Regular;
     color:rgba(160,152,142,1);
+    background-color: rgb(240,242,245);
     .gold{
       width: 0.48rem;
       height: 0.48rem;
@@ -193,10 +209,13 @@
       .type {
         padding: 0.08rem;
         font-size: 0.26rem;
-        background-color: #63CAFF;
-        color: #1A63CAFF;
-        opacity: 0.7;
-        border: 1px solid #C4DEF9;
+       /* background-color: #FFA400;
+        opacity: 0.1;
+        color: #FF9700;*/
+        background-color: rgb(239,249,255);
+        color: #63CAFF;
+        /*border: 1px solid #C4DEF9;*/
+        border: 1px solid #63CAFF;
       }
     }
   }

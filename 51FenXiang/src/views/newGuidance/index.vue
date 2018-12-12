@@ -1,6 +1,6 @@
 <template>
   <div ref="wrapper" class="wrapper">
-    <div class="page" ref="page">
+    <div>
       <img class="guidance" :src="url" alt="">
     </div>
   </div>
